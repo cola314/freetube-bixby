@@ -1,10 +1,10 @@
-import {actionssdk, MediaObject, Suggestions, Image} from 'actions-on-google'
+import {dialogflow, Image, MediaObject} from 'actions-on-google'
 import express from 'express'
 
-const app = actionssdk({ debug: true });
-const expressApp = express();
+const app = dialogflow({ debug: true });
+const expressApp = express().use(express.json());
 
-app.intent('Media Response', (conv) => {
+app.intent('BasicBehavior', (conv) => {
     if (!conv.surface.capabilities
         .has('actions.capability.MEDIA_RESPONSE_AUDIO')) {
         conv.ask('Sorry, this device does not support audio playback.');
